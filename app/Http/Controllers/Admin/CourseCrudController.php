@@ -39,7 +39,10 @@ class CourseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('name');
+        CRUD::column('price')->suffix('$');
+        CRUD::column('Teacher');
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -56,7 +59,11 @@ class CourseCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(CourseRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field('name');
+        CRUD::field('price')->prefix('$');
+        CRUD::field('teacher_id')
+            ->type('select')->model('App\Models\Teacher');
 
         /**
          * Fields can be defined using the fluent syntax:
