@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends Model
 {
@@ -30,8 +30,8 @@ class Student extends Model
         'id' => 'integer',
     ];
 
-    public function courses(): HasMany
+    public function courses(): BelongsToMany
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class);
     }
 }
