@@ -22,9 +22,9 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'price' => $this->faker->numberBetween(-10000, 10000),
-            'teacher_id' => Teacher::factory(),
+            'name' => $this->faker->words(3,true),
+            'price' => $this->faker->numberBetween(0, 10000),
+            'teacher_id' => Teacher::inRandomOrder()->first()
         ];
     }
 }
