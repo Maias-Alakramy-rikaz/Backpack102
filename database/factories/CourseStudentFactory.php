@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Course;
-use App\Models\CouseStudent;
+use App\Models\CourseStudent;
 use App\Models\Student;
 
 class CourseStudentFactory extends Factory
@@ -15,7 +15,7 @@ class CourseStudentFactory extends Factory
      *
      * @var string
      */
-    protected $model = CouseStudent::class;
+    protected $model = CourseStudent::class;
 
     /**
      * Define the model's default state.
