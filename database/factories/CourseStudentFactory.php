@@ -8,7 +8,7 @@ use App\Models\Course;
 use App\Models\CouseStudent;
 use App\Models\Student;
 
-class CouseStudentFactory extends Factory
+class CourseStudentFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
