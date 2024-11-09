@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class CourseStudent extends Model
 {
+    use CrudTrait;
     use HasFactory;
+
+    protected $table='course_student';
 
     /**
      * The attributes that are mass assignable.
@@ -32,23 +36,23 @@ class CourseStudent extends Model
         'student_id' => 'integer',
     ];
 
-    public function students(): HasMany
+    public function students(): BelongsToMany
     {
-        return $this->hasMany(Student::class);
+        return $this->BelongsToMany(Student::class);
     }
 
-    public function courses(): HasMany
+    public function courses(): BelongsToMany
     {
-        return $this->hasMany(Course::class);
-    }
-
-    public function course(): BelongsTo
-    {
-        return $this->belongsTo(Course::class);
+        return $this->BelongsToMany(Course::class);
     }
 
     public function student(): BelongsTo
     {
-        return $this->belongsTo(Student::class);
+        return $this->BelongsTo(Student::class);
+    }
+
+    public function course(): BelongsTo
+    {
+        return $this->BelongsTo(Course::class);
     }
 }
