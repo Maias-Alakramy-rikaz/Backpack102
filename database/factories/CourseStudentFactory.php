@@ -23,8 +23,8 @@ class CourseStudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'course_id' => Course::factory(),
-            'student_id' => Student::factory(),
+            'course_id' => Course::inRandomOrder()->first(),
+            'student_id' => Student::inRandomOrder()->first(),
         ];
     }
 }
