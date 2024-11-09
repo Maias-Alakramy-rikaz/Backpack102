@@ -64,6 +64,11 @@ class CourseCrudController extends CrudController
         CRUD::field('price')->prefix('$');
         CRUD::field('teacher_id')
             ->type('select')->model('App\Models\Teacher');
+        CRUD::field([   
+            'label'     => "Students",
+            'type'      => 'select_multiple',
+            'name'      => 'students', // the method that defines the relationship in your Model
+            ]);
 
         /**
          * Fields can be defined using the fluent syntax:

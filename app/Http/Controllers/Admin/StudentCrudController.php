@@ -56,7 +56,13 @@ class StudentCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(StudentRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.
+        // CRUD::setFromDb(); // set fields from db columns.
+        CRUD::field("name");   
+        CRUD::field([   
+            'label'     => "Courses",
+            'type'      => 'select_multiple',
+            'name'      => 'courses', // the method that defines the relationship in your Model
+            ]);
 
         /**
          * Fields can be defined using the fluent syntax:
