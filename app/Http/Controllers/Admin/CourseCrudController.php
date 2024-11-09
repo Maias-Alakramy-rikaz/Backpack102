@@ -43,6 +43,14 @@ class CourseCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('price')->suffix('$');
         CRUD::column('Teacher');
+        CRUD::column([
+            // relationship count
+            'name'      => 'students', // name of relationship method in the model
+            'type'      => 'relationship_count',
+            'label'     => '#Students', // Table column heading
+            // OPTIONAL
+            'suffix' => ' students', // to show "123 tags" instead of "123 items"
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:

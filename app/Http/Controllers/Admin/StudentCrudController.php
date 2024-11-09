@@ -39,7 +39,16 @@ class StudentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
+        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column('name');
+        CRUD::column([
+            // relationship count
+            'name'      => 'courses', // name of relationship method in the model
+            'type'      => 'relationship_count',
+            'label'     => '#Courses', // Table column heading
+            // OPTIONAL
+            'suffix' => ' courses', // to show "123 tags" instead of "123 items"
+        ]);
 
         /**
          * Columns can be defined using the fluent syntax:
