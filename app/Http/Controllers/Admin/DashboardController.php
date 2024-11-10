@@ -51,7 +51,7 @@ class DashboardController extends Controller
         ])->to('before_content');
 
         $teachers = Teacher::with('courses.students')->get();
-        $teacherNames = $teachers->pluck('name');
+        $teacherNames = $teachers->pluck('first_name');
         $revenues = $teachers
         ->map(function ($teacher) {
             return $teacher->courses
