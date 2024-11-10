@@ -21,6 +21,7 @@ class Course extends Model
     protected $fillable = [
         'name',
         'price',
+        'start_date',
         'teacher_id',
     ];
 
@@ -31,6 +32,7 @@ class Course extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'start_date' => 'date',
         'teacher_id' => 'integer',
     ];
 

@@ -38,21 +38,21 @@ class CourseStudent extends Model
 
     public function students(): BelongsToMany
     {
-        return $this->BelongsToMany(Student::class);
+        return $this->belongsToMany(Student::class);
     }
 
     public function courses(): BelongsToMany
     {
-        return $this->BelongsToMany(Course::class);
-    }
-
-    public function student(): BelongsTo
-    {
-        return $this->BelongsTo(Student::class);
+        return $this->belongsToMany(Course::class);
     }
 
     public function course(): BelongsTo
     {
-        return $this->BelongsTo(Course::class);
+        return $this->belongsTo(Course::class);
+    }
+
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class);
     }
 }

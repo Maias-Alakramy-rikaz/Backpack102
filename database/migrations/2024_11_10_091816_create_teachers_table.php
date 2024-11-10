@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('price');
-            $table->foreignId('teacher_id')->constrained('Teachers');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->date('birthday');
             $table->timestamps();
         });
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('teachers');
     }
 };

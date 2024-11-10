@@ -21,7 +21,9 @@ class TeacherFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'birthday' => $this->$faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
         ];
     }
 }

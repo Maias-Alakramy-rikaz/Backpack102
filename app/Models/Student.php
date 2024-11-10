@@ -18,7 +18,9 @@ class Student extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'birthday',
     ];
 
     /**
@@ -28,6 +30,7 @@ class Student extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'birthday' => 'date',
     ];
 
     public function courses(): BelongsToMany
