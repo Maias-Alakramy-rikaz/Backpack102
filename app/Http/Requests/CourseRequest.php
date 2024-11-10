@@ -25,7 +25,7 @@ class CourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:5|max:255',
+            'name' => 'required|string|max:255|unique:courses,name,'.$this->id,
             'price' => 'required|numeric|min:0',
             'start_date' => 'required|date',
             'teacher_id' => 'required|numeric'
