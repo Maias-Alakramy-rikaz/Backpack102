@@ -39,8 +39,7 @@ class TeacherCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        // CRUD::setFromDb(); // set columns from db columns.
-        CRUD::column('name');
+        CRUD::setFromDb(); // set columns from db columns.
         CRUD::column([
             // relationship count
             'name'      => 'courses', // name of relationship method in the model

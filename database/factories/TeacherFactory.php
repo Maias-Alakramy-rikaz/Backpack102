@@ -23,7 +23,7 @@ class TeacherFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'birthday' => $this->$faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
+            'birthday' => $this->faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
         ];
     }
 }

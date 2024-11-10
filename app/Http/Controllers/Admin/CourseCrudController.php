@@ -39,9 +39,9 @@ class CourseCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        // CRUD::setFromDb(); // set columns from db columns.
-        CRUD::column('name');
-        CRUD::column('price')->suffix('$');
+        CRUD::setFromDb(); // set columns from db columns.
+        CRUD::modifyColumn('price', ['suffix'=>'$']);
+        CRUD::removeColumn('teacher_id');
         CRUD::column('Teacher');
         CRUD::column([
             // relationship count
@@ -70,6 +70,11 @@ class CourseCrudController extends CrudController
         // CRUD::setFromDb(); // set fields from db columns.
         CRUD::field('name');
         CRUD::field('price')->prefix('$');
+        CRUD::field([
+            'name'  => 'start_date', // The db column name
+            'label' => 'Start date', // Table column heading
+            'type'  => 'date',
+            ]);
         CRUD::field('teacher_id')
             ->type('select')->model('App\Models\Teacher');
         CRUD::field([   

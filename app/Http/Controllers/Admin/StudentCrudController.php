@@ -39,8 +39,7 @@ class StudentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        // CRUD::setFromDb(); // set columns from db columns.
-        CRUD::column('name');
+        CRUD::setFromDb(); // set columns from db columns.
         CRUD::column([
             // relationship count
             'name'      => 'courses', // name of relationship method in the model
@@ -65,8 +64,7 @@ class StudentCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(StudentRequest::class);
-        // CRUD::setFromDb(); // set fields from db columns.
-        CRUD::field("name");   
+        CRUD::setFromDb(); // set fields from db columns.  
         CRUD::field([   
             'label'     => "Courses",
             'type'      => 'select_multiple',

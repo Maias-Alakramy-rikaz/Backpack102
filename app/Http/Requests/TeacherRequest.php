@@ -25,7 +25,9 @@ class TeacherRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255'
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'birthday' => 'required|date'
         ];
     }
 
