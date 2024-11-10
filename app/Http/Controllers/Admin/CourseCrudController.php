@@ -28,7 +28,7 @@ class CourseCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Course::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/course');
-        CRUD::setEntityNameStrings('course', 'courses');
+        CRUD::setEntityNameStrings('كورس', 'كورسات');
     }
 
     /**
@@ -40,16 +40,18 @@ class CourseCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
-        CRUD::modifyColumn('price', ['suffix'=>'$']);
+        CRUD::modifyColumn('price', ['label'=>'السعر','suffix'=>'$']);
+        CRUD::modifyColumn('name', ['label'=>'الاسم']);
+        CRUD::modifyColumn('start_date', ['label'=>'تاريخ البدء']);
         CRUD::removeColumn('teacher_id');
-        CRUD::column('Teacher');
+        CRUD::column(['name'=>'Teacher','label'=>'أستاذ']);
         CRUD::column([
             // relationship count
             'name'      => 'students', // name of relationship method in the model
             'type'      => 'relationship_count',
-            'label'     => '#Students', // Table column heading
+            'label'     => 'عدد الطلاب المسجلين', // Table column heading
             // OPTIONAL
-            'suffix' => ' students', // to show "123 tags" instead of "123 items"
+            'suffix' => ' طالب', // to show "123 tags" instead of "123 items"
         ]);
 
         /**
@@ -68,17 +70,17 @@ class CourseCrudController extends CrudController
     {
         CRUD::setValidation(CourseRequest::class);
         // CRUD::setFromDb(); // set fields from db columns.
-        CRUD::field('name');
-        CRUD::field('price')->prefix('$');
+        CRUD::field(['label'=>'الاسم','name'=>'name']);
+        CRUD::field(['label'=>'الاسم','name'=>'price','prefix'=>'$']);
         CRUD::field([
             'name'  => 'start_date', // The db column name
-            'label' => 'Start date', // Table column heading
+            'label' => 'تاريخ البدء', // Table column heading
             'type'  => 'date',
             ]);
         CRUD::field('teacher_id')
-            ->type('select')->model('App\Models\Teacher');
+            ->type('select')->model('App\Models\Teacher')->label('الأستاذ');
         CRUD::field([   
-            'label'     => "Students",
+            'label'     => "الطلاب",
             'type'      => 'select_multiple',
             'name'      => 'students', // the method that defines the relationship in your Model
             ]);

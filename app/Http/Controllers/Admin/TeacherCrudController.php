@@ -28,7 +28,7 @@ class TeacherCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Teacher::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/teacher');
-        CRUD::setEntityNameStrings('teacher', 'teachers');
+        CRUD::setEntityNameStrings('أستاذ', 'أساتذة');
     }
 
     /**
@@ -40,13 +40,16 @@ class TeacherCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
+        CRUD::modifyColumn('first_name', ['label'=>'الاسم']);
+        CRUD::modifyColumn('last_name', ['label'=>'الكنية']);
+        CRUD::modifyColumn('birthday', ['label'=>'تاريخ الميلاد']);
         CRUD::column([
             // relationship count
             'name'      => 'courses', // name of relationship method in the model
             'type'      => 'relationship_count',
-            'label'     => '#Courses taught', // Table column heading
+            'label'     => 'عدد الكورسات التي يدرسها', // Table column heading
             // OPTIONAL
-            'suffix' => ' courses', // to show "123 tags" instead of "123 items"
+            'suffix' => ' كورس', // to show "123 tags" instead of "123 items"
         ]);
         /**
          * Columns can be defined using the fluent syntax:
@@ -64,7 +67,9 @@ class TeacherCrudController extends CrudController
     {
         CRUD::setValidation(TeacherRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
-
+        CRUD::modifyField('first_name', ['label'=>'الاسم']);
+        CRUD::modifyField('last_name', ['label'=>'الكنية']);
+        CRUD::modifyField('birthday', ['label'=>'تاريخ الميلاد']); 
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');

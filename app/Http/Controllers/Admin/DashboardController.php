@@ -30,22 +30,22 @@ class DashboardController extends Controller
                     'type' => 'card',
                     'class'   => 'card bg-secondary text-white',
                     'content' => [
-                        'header' =>"Number of Students",
-                        'body' => "".$stuentdCount." Student."],
+                        'header' =>"عدد الطلاب المسجلين",
+                        'body' => "".$stuentdCount." طالب."],
                 ],
                 [
                     'type' => 'card',
                     'class'   => 'card bg-secondary text-white',
                     'content' => [
-                        'header' =>"Number of Teachers",
-                        'body' => "".$teacherCount." Teacher."],
+                        'header' =>"عدد الأساتذة المسجلين",
+                        'body' => "".$teacherCount." أستاذ."],
                 ],
                 [
                     'type' => 'card',
                     'class'   => 'card bg-secondary text-white',
                     'content' => [
-                        'header' =>"Number of Courses",
-                        'body' => "".$courseCount." Course."],
+                        'header' =>"عدد الكورسات المتوافرة",
+                        'body' => "".$courseCount." كورس."],
                 ],
             ],
         ])->to('before_content');

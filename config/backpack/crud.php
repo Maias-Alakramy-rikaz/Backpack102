@@ -42,7 +42,7 @@ return [
         // "ar_TN" => "Arabic (Tunisia)",
         // "ar_AE" => "Arabic (United Arab Emirates)",
         // "ar_YE" => "Arabic (Yemen)",
-        // "ar" => "Arabic",
+        "ar" => "Arabic",
         // "hy_AM" => "Armenian (Armenia)",
         // "hy" => "Armenian",
         // "as_IN" => "Assamese (India)",

@@ -24,7 +24,7 @@ class CourseStudentCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\CourseStudent::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/course-student');
-        CRUD::setEntityNameStrings('course\'s students', 'courses\' students');
+        CRUD::setEntityNameStrings('حضور طالب', 'حضور طلاب');
     }
 
     /**
@@ -36,8 +36,8 @@ class CourseStudentCrudController extends CrudController
     protected function setupListOperation()
     {
         // CRUD::setFromDb(); // set columns from db columns.
-        CRUD::column('Course');
-        CRUD::column('Student');
+        CRUD::column(['label'=>'الكورس','name'=>'Course']);
+        CRUD::column(['label'=>'الطالب','name'=>'Student']);
 
         /**
          * Columns can be defined using the fluent syntax:

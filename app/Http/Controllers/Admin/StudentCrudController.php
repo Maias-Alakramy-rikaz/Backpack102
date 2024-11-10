@@ -28,7 +28,7 @@ class StudentCrudController extends CrudController
     {
         CRUD::setModel(\App\Models\Student::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/student');
-        CRUD::setEntityNameStrings('student', 'students');
+        CRUD::setEntityNameStrings('طالب', 'طلاب');
     }
 
     /**
@@ -40,13 +40,16 @@ class StudentCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
+        CRUD::modifyColumn('first_name', ['label'=>'الاسم']);
+        CRUD::modifyColumn('last_name', ['label'=>'الكنية']);
+        CRUD::modifyColumn('birthday', ['label'=>'تاريخ الميلاد']);
         CRUD::column([
             // relationship count
             'name'      => 'courses', // name of relationship method in the model
             'type'      => 'relationship_count',
-            'label'     => '#Courses', // Table column heading
+            'label'     => 'عدد الكورسات المسجلة', // Table column heading
             // OPTIONAL
-            'suffix' => ' courses', // to show "123 tags" instead of "123 items"
+            'suffix' => ' كورس', // to show "123 tags" instead of "123 items"
         ]);
 
         /**
@@ -64,9 +67,12 @@ class StudentCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(StudentRequest::class);
-        CRUD::setFromDb(); // set fields from db columns.  
+        CRUD::setFromDb(); // set fields from db columns. 
+        CRUD::modifyField('first_name', ['label'=>'الاسم']);
+        CRUD::modifyField('last_name', ['label'=>'الكنية']);
+        CRUD::modifyField('birthday', ['label'=>'تاريخ الميلاد']); 
         CRUD::field([   
-            'label'     => "Courses",
+            'label'     => "كورسات مسجلة",
             'type'      => 'select_multiple',
             'name'      => 'courses', // the method that defines the relationship in your Model
             ]);
