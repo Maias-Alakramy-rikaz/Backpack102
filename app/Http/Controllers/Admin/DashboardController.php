@@ -50,13 +50,20 @@ class DashboardController extends Controller
             ],
         ])->to('before_content');
 
-        $teachers = Teacher::withSum('courses', 'price')->get();
+        $teachers = Teacher::with('courses.students')->get();
         $teacherNames = $teachers->pluck('name');
-        $totalCoursePrices = $teachers->pluck('courses_sum_price');
-
+        $revenues = $teachers
+        ->map(function ($teacher) {
+            return $teacher->courses
+            ->sum(function ($course){
+                return $course->price * $course->students->count();
+                });
+            });
+        
         $teachersChart = new MyChart;
         $teachersChart->labels($teacherNames);
-        $teachersChart->dataset('TeacherRevenue', 'bar', $totalCoursePrices);
+        $teachersChart->dataset('Total Revenue', 'bar', $revenues);
+
         return view('admin.dashboard', [
             'teachersChart' => $teachersChart,
             'title' => 'Dashboard',
