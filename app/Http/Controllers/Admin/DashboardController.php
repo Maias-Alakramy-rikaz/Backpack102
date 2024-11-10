@@ -62,7 +62,7 @@ class DashboardController extends Controller
         
         $teachersChart = new MyChart;
         $teachersChart->labels($teacherNames);
-        $teachersChart->dataset('Total Revenue', 'bar', $revenues);
+        $teachersChart->dataset('أرباح الاساتذة', 'bar', $revenues);
 
         return view('admin.dashboard', [
             'teachersChart' => $teachersChart,
