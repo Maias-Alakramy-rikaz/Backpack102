@@ -71,7 +71,7 @@ class CourseCrudController extends CrudController
         CRUD::setValidation(CourseRequest::class);
         // CRUD::setFromDb(); // set fields from db columns.
         CRUD::field(['label'=>'الاسم','name'=>'name']);
-        CRUD::field(['label'=>'الاسم','name'=>'price','prefix'=>'$']);
+        CRUD::field(['label'=>'السعر','name'=>'price','prefix'=>'$']);
         CRUD::field([
             'name'  => 'start_date', // The db column name
             'label' => 'تاريخ البدء', // Table column heading
