@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StudentRequest extends FormRequest
 {
@@ -25,9 +26,9 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'birthday' => 'required|date'
+            'first_name' => ['required','string','max:255',Rule::unique('students')->where('first_name',$this->first_name)->where('last_name',$this->last_name)->ignore($this->id)], 
+            'last_name' => ['required','string','max:255',Rule::unique('students')->where('first_name',$this->first_name)->where('last_name',$this->last_name)->ignore($this->id)],
+            'birthday' => ['required','date']
         ];
     }
 
@@ -51,7 +52,8 @@ class StudentRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            "first_name.unique" => "هذا الطالب (اسم وكنية) موجود مسبقا",
+            "last_name.unique" => "هذا الطالب (اسم وكنية) موجود مسبقا"
         ];
     }
 }

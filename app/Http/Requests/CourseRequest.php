@@ -27,8 +27,8 @@ class CourseRequest extends FormRequest
         return [
             'name' => 'required|string|max:255|unique:courses,name,'.$this->id,
             'price' => 'required|numeric|min:0',
-            'start_date' => 'required|date',
-            'teacher_id' => 'required|numeric'
+            'start_date' => 'required|date|after:-1day',
+            'teacher_id' => 'required|numeric|exists:teachers,id'
         ];
     }
 
@@ -52,7 +52,7 @@ class CourseRequest extends FormRequest
     public function messages()
     {
         return [
-            //
+            "start_date.after"=>"يجب أن يبدأ الكورس على الأقل ابتداءً من اليوم"
         ];
     }
 }

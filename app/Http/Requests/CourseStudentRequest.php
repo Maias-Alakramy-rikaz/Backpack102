@@ -27,8 +27,8 @@ class CourseStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'course_id'=>['required','integer',Rule::unique('course_student')->where('course_id',$this->course_id)->where('student_id',$this->student_id)->ignore($this->id)],
-            'student_id'=>['required','integer',Rule::unique('course_student')->where('course_id',$this->course_id)->where('student_id',$this->student_id)->ignore($this->id)],
+            'course_id'=>['required','integer','exists:courses,id',Rule::unique('course_student')->where('course_id',$this->course_id)->where('student_id',$this->student_id)->ignore($this->id)],
+            'student_id'=>['required','integer','exists:students,id',Rule::unique('course_student')->where('course_id',$this->course_id)->where('student_id',$this->student_id)->ignore($this->id)],
         ];
     }
 
