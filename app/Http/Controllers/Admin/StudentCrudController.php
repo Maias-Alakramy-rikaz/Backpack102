@@ -39,10 +39,9 @@ class StudentCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-        CRUD::modifyColumn('first_name', ['label'=>'الاسم']);
-        CRUD::modifyColumn('last_name', ['label'=>'الكنية']);
-        CRUD::modifyColumn('birthday', ['label'=>'تاريخ الميلاد']);
+        // CRUD::setFromDb(); // set columns from db columns.
+        CRUD::column(['name'=>'full_name', 'label'=>'الاسم الكامل']);
+        CRUD::column(['name'=>'birthday', 'label'=>'تاريخ الميلاد']);
         CRUD::column([
             // relationship count
             'name'      => 'courses', // name of relationship method in the model
