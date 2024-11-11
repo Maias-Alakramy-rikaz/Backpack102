@@ -28,6 +28,10 @@ class CourseStudentCrudController extends CrudController
         CRUD::setModel(\App\Models\CourseStudent::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/course-student');
         CRUD::setEntityNameStrings('حضور طالب', 'حضور طلاب');
+        
+        if (!(backpack_user()->can('manage-courses') && backpack_user()->can('manage-students')) ) {
+            abort(403, 'غير مخول بالدخول.');
+        }
     }
 
     /**

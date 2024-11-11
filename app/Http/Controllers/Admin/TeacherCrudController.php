@@ -29,6 +29,10 @@ class TeacherCrudController extends CrudController
         CRUD::setModel(\App\Models\Teacher::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/teacher');
         CRUD::setEntityNameStrings('أستاذ', 'أساتذة');
+        
+        if (!backpack_user()->can('manage-teachers')) {
+            abort(403, 'غير مخول بالدخول.');
+        }
     }
 
     /**

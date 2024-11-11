@@ -18,6 +18,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        if (!backpack_user()->can('show-dashboard')) {
+            abort(403, 'غير مخول بالدخول.');
+        }
         $stuentdCount = Student::All()->count();
         $teacherCount = Teacher::All()->count();
         $courseCount = Course::All()->count();
