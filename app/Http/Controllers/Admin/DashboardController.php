@@ -51,7 +51,10 @@ class DashboardController extends Controller
         ])->to('before_content');
 
         $teachers = Teacher::with('courses.students')->get();
-        $teacherNames = $teachers->pluck('first_name');
+        $fullNames = $teachers
+        ->map(function ($teacher) {
+            return $teacher->first_name . ' ' . $teacher->last_name;
+        });
         $revenues = $teachers
         ->map(function ($teacher) {
             return $teacher->courses
@@ -61,7 +64,7 @@ class DashboardController extends Controller
             });
         
         $teachersChart = new MyChart;
-        $teachersChart->labels($teacherNames);
+        $teachersChart->labels($fullNames);
         $teachersChart->dataset('أرباح الاساتذة', 'bar', $revenues);
 
         return view('admin.dashboard', [
