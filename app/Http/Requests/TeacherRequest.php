@@ -26,8 +26,8 @@ class TeacherRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required','string','max:255',Rule::unique('students')->where('first_name',$this->first_name)->where('last_name',$this->last_name)->ignore($this->id)], 
-            'last_name' => ['required','string','max:255',Rule::unique('students')->where('first_name',$this->first_name)->where('last_name',$this->last_name)->ignore($this->id)],
+            'first_name' => ['required','string','max:255',Rule::unique('teachers')->where('first_name',$this->first_name)->where('last_name',$this->last_name)->ignore($this->id)], 
+            'last_name' => ['required','string','max:255',Rule::unique('teachers')->where('first_name',$this->first_name)->where('last_name',$this->last_name)->ignore($this->id)],
             'birthday' => ['required','date','before:-18years']
         ];
     }
