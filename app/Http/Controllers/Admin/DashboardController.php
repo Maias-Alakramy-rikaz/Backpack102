@@ -69,10 +69,10 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', [
             'teachersChart' => $teachersChart,
-            'title' => 'Dashboard',
+            'title' => 'لوحة التحكم',
             'breadcrumbs' => [
                 trans('backpack::crud.admin') => backpack_url('dashboard'),
-                'Dashboard' => false,
+                'لوحة التحكم' => false,
             ],
             'page' => 'resources/views/admin/dashboard.blade.php',
             'controller' => 'app/Http/Controllers/Admin/DashboardController.php',
