@@ -44,7 +44,7 @@ class CourseCrudController extends CrudController
         CRUD::modifyColumn('name', ['label'=>'الاسم']);
         CRUD::modifyColumn('start_date', ['label'=>'تاريخ البدء']);
         CRUD::removeColumn('teacher_id');
-        CRUD::column(['name'=>'Teacher','label'=>'أستاذ']);
+        CRUD::column(['name'=>'Teacher','label'=>'أستاذ','attribute'=>'full_name']);
         CRUD::column([
             // relationship count
             'name'      => 'students', // name of relationship method in the model
@@ -52,6 +52,7 @@ class CourseCrudController extends CrudController
             'label'     => 'عدد الطلاب المسجلين', // Table column heading
             // OPTIONAL
             'suffix' => ' طالب', // to show "123 tags" instead of "123 items"
+            'attribute'=>'full_name'
         ]);
 
         /**
@@ -78,11 +79,12 @@ class CourseCrudController extends CrudController
             'type'  => 'date',
             ]);
         CRUD::field('teacher_id')
-            ->type('select')->model('App\Models\Teacher')->label('الأستاذ');
+            ->type('select')->model('App\Models\Teacher')->label('الأستاذ')->attribute('full_name');
         CRUD::field([   
             'label'     => "الطلاب",
             'type'      => 'select_multiple',
             'name'      => 'students', // the method that defines the relationship in your Model
+            'attribute'=>'full_name'
             ]);
 
         /**

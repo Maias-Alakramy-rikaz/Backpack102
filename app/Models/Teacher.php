@@ -37,4 +37,9 @@ class Teacher extends Model
     {
         return $this->hasMany(Course::class);
     }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 }

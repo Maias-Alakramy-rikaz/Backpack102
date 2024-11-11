@@ -40,7 +40,7 @@ class CourseStudentCrudController extends CrudController
     {
         // CRUD::setFromDb(); // set columns from db columns.
         CRUD::column(['label'=>'الكورس','name'=>'Course']);
-        CRUD::column(['label'=>'الطالب','name'=>'Student']);
+        CRUD::column(['label'=>'الطالب','name'=>'Student','attribute'=>'full_name']);
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -60,7 +60,7 @@ class CourseStudentCrudController extends CrudController
         CRUD::field('course_id')
             ->type('select')->model('App\Models\Course')->label('الكورس');
         CRUD::field('student_id')
-            ->type('select')->model('App\Models\Student')->label('لطالب');
+            ->type('select')->model('App\Models\Student')->label('لطالب')->attribute('full_name');
 
         /**
          * Fields can be defined using the fluent syntax:
