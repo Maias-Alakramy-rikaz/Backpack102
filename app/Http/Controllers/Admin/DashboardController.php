@@ -50,17 +50,25 @@ class DashboardController extends Controller
             ],
         ])->to('before_content');
 
-        $teachers = Teacher::with('courses.students')->get();
+        $teachers = Teacher::with(['courses.students'])->get()->map(function ($teacher) {
+            // Calculate total revenue for each course
+            $totalRevenue = $teacher->courses->sum(function ($course) {
+                return $course->price * $course->students->count();
+            });
+        
+            // Attach total revenue to the teacher model
+            $teacher->total_revenue = $totalRevenue;
+        
+            return $teacher;
+        })->sortByDesc('total_revenue')->values();
+
         $fullNames = $teachers
         ->map(function ($teacher) {
             return $teacher->first_name . ' ' . $teacher->last_name;
         });
         $revenues = $teachers
         ->map(function ($teacher) {
-            return $teacher->courses
-            ->sum(function ($course){
-                return $course->price * $course->students->count();
-                });
+            return $teacher->total_revenue;
             });
         
         $teachersChart = new MyChart;
